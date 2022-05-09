@@ -13,13 +13,41 @@ namespace StudentPerformanceManagement
         public string title;
         public string description;
 
-        public Course(int courseId, int courseCode, string title, string description)
+        public void LoadData()
         {
-            this.courseId = courseId;
-            this.courseCode = courseCode;
-            this.title = title;
-            this.description = description;
+            Console.WriteLine("Enter Course Code = ");
+            courseCode = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter Course Title = ");
+            title = Console.ReadLine();
+
+            Console.WriteLine("Enter Course Description = ");
+            description = Console.ReadLine();
+
         }
+
+        public void EditCourseData()
+        {
+            Console.WriteLine("Enter Course ID = ");
+            courseId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter Course Code = ");
+            courseCode = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter Course Title = ");
+            title = Console.ReadLine();
+
+            Console.WriteLine("Enter Course Description = ");
+            description = Console.ReadLine();
+        }
+
+        //public Course(int courseId, int courseCode, string title, string description)
+        //{
+        //    this.courseId = courseId;
+        //    this.courseCode = courseCode;
+        //    this.title = title;
+        //    this.description = description;
+        //}
 
 
     }
