@@ -9,14 +9,8 @@ namespace StudentPerformanceManagement
 {
     public class MarksService
     {
-        public void Add()
+        public void Add(Marks m)
         {
-            Console.WriteLine("Enter StudentId = ");
-            int studentId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter SubjectId = ");
-            int subjectId =int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Total Marks = ");
-            int marks = int.Parse(Console.ReadLine());
             
             string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -24,14 +18,51 @@ namespace StudentPerformanceManagement
                 connection.Open();
                 SqlCommand command = new SqlCommand("insertMarks", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@studentId", studentId));
-                command.Parameters.Add(new SqlParameter("@subjectId", subjectId));
-                command.Parameters.Add(new SqlParameter("@marks", marks));
+                command.Parameters.Add(new SqlParameter("@rollNo", m.studRollNo));
+                command.Parameters.Add(new SqlParameter("@subjectCode", m.subCode));
+                command.Parameters.Add(new SqlParameter("@marks", m.marks));
                
                 int rowsffected = command.ExecuteNonQuery();
-                Console.WriteLine(rowsffected + " row inserted");
+                Console.WriteLine(rowsffected + " marks inserted");
             }
 
         }
+        public void Delete(Marks m)
+        {
+            Console.WriteLine("Enter Marks ID = ");
+            m.marksId = int.Parse(Console.ReadLine());
+
+            string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("deleteMarks", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@marksId", m.marksId));
+
+                int rowsffected = command.ExecuteNonQuery();
+                Console.WriteLine(rowsffected + " Marks deleted successfully...!");
+            }
+        }
+        public void DisplayMarksByRollno()
+        {
+            string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("DisplayMarksByRollNo", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine(reader[0].ToString() + " " + reader[1].ToString());
+
+                    }
+                }
+            }
+        }
     }
 }
+

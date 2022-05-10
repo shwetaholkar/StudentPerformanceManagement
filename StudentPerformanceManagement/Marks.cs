@@ -12,13 +12,25 @@ namespace StudentPerformanceManagement
         public int studentId;
         public int subjectId;
         public int marks;
+        public int studRollNo;
+        public int subCode;
 
-        public Marks(int marksId, int studentId, int subjectId, int marks)
+        public void LoadDataForMarks()
         {
-            this.marksId = marksId;
-            this.studentId = studentId;
-            this.subjectId = subjectId;
-            this.marks = marks;
+            Console.WriteLine("Enter Student Rollno = ");
+            studRollNo = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Subject Code = ");
+            subCode = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Total Marks = ");
+            marks = int.Parse(Console.ReadLine());
         }
+
+        //public Marks(int marksId, int studentId, int subjectId, int marks)
+        //{
+        //    this.marksId = marksId;
+        //    this.studentId = studentId;
+        //    this.subjectId = subjectId;
+        //    this.marks = marks;
+        //}
     }
 }

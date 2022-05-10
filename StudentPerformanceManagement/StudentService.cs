@@ -67,7 +67,22 @@ namespace StudentPerformanceManagement
         }
         public void DisplayStudentReport()
         {
+            string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("DisplayStudentReport", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine(reader[0].ToString() + " " + reader[1].ToString() + " " + reader[2].ToString());
+
+                    }
+                }
+            }
         }
 
     }

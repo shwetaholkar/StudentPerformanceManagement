@@ -17,6 +17,7 @@ namespace StudentPerformanceManagement
             Course c = new Course();
             Student s = new Student();
             Subject subject = new Subject();
+            Marks marks = new Marks();
             int num = 0;
             do
             {
@@ -33,11 +34,11 @@ namespace StudentPerformanceManagement
                 Console.WriteLine(" 10. Delete Course ");
                 Console.WriteLine(" 11. Delete marks ");
                 Console.WriteLine(" 12. List all students with details of course, subject, and total marks ");
-                Console.WriteLine(" 13.Ask roll number to display subject wise marks for a student ");
+                Console.WriteLine(" 13. Display subject wise marks for a student ");
                 Console.WriteLine(" 14. List course wise average marks ");
                 Console.WriteLine(" 15. List course wise max marks ");
                 Console.WriteLine(" 16. List course wise topper ");
-                //Console.WriteLine(" 0. Exit ");
+
                 Console.WriteLine(" Enter your choice : ");
                 num = int.Parse(Console.ReadLine());
                 switch (num)
@@ -46,61 +47,77 @@ namespace StudentPerformanceManagement
                         s.LoadDataForStudent();
                         studentService.Add(s);
                         break;
+
                     case 2:
                         //Course course = new Course();
                         c.LoadData();
                         courseService.Add(c);
                         break;
+
                     case 3:
                         subject.LoadDateForSubject();
                         subjectService.Add(subject);
                         break;
+
                     case 4:
-                        marksService.Add();
+                        marks.LoadDataForMarks();
+                        marksService.Add(marks);
                         break;
+
                     case 5:
                         s.EditStudentData();
                         studentService.Edit(s);
                         break;
+
                     case 6:
                         c.EditCourseData();
                         courseService.Edit(c);
                         break;
+
                     case 7:
                         subject.EditSubjectData();
                         subjectService.Edit(subject);
                         break;
+
                     case 8:
                         studentService.Delete(s);
                         break;
+
                     case 9:
                         subjectService.Delete(subject);
                         break;
+
                     case 10:
                         courseService.Delete(c);
                         break;
+
                     case 11:
+                        marksService.Delete(marks);
                         break;
+
                     case 12:
+                        studentService.DisplayStudentReport();
                         break;
+
                     case 13:
+                        marksService.DisplayMarksByRollno();
                         break;
+
                     case 14:
                         courseService.DisplayCourseWiseAverageMarks();
                         break;
+
                     case 15:
                         courseService.DisplayCourseWiseHighestMarks();
                         break;
+
                     case 16:
                         courseService.DisplayCourseWiseTopper();
                         break;
-                    //case 0:
-                    //    Environment.Exit(0);
-                    //    break;
+
                     default:
                         Console.WriteLine("Invalid Choice...");
                         break;
-
                 }
 
             } while (num > 0);

@@ -11,7 +11,7 @@ namespace StudentPerformanceManagement
     {
         public void Add(Course c)
         {
-            
+
             string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -37,7 +37,7 @@ namespace StudentPerformanceManagement
         }
         public void Edit(Course c)
         {
-           
+
             string connectionString = @"Data Source=DESKTOP-ERGIE03\MSSQLSERVER01;Initial Catalog=StudentPerformanceManagement;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -137,4 +137,3 @@ namespace StudentPerformanceManagement
 
 
 
- 
